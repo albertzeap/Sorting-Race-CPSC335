@@ -44,6 +44,47 @@ function drawWords(title, x) {
   
   }
 
+//==================================================================
+//==========================MERGESORT===============================
+//==================================================================
+
+/*  The following mergesort code implementation can be found here 
+    https://www.tutorialspoint.com/how-to-implement-merge-sort-in-javascript
+*/
+
+  function mergeSort(array){
+      if (array.length == 1){
+          return array;
+      }
+
+      const middle = Math.floor(array.length / 2);
+      const left = array.slice(0,middle);
+      const right = array.slice(middle);
+      return merge(mergeSort(left), mergeSort(right))
+  }
+
+  function merge (left, right){
+      let result = [];
+      let leftIndex = 0;
+      let rightIndex = 0;
+
+     while (leftIndex < left.length && rightIndex < right.length){
+         if (left[leftIndex] < right[rightIndex]){
+             result.push(left[leftIndex]);
+             leftIndex++;
+         }
+         else {
+             result.push(right[rightIndex])
+             rightIndex++;
+         }
+     }
+     return result.concat(left.slice(leftIndex)).concat(right.slice(rightIndex));
+  }
+
+//==================================================================
+//==================================================================
+//==================================================================
+
 function keyPressed( )
 {
     g_stop = ! g_stop;
@@ -53,18 +94,8 @@ function mousePressed( )
 {
     let x = mouseX;
     let y = mouseY;
-    //console.log( "mouse x,y = " + x + "," + y );
+    console.log( "mouse x,y = " + x + "," + y );
     let sz = g_canvas.cell_size;
     let gridx = round( (x-0.5) / sz );
     let gridy = round( (y-0.5) / sz );
-    //console.log( "grid x,y = " + gridx + "," + gridy );
-    //console.log( "box wid,hgt = " + g_box.wid + "," + g_box.hgt );
-    g_bot.x = gridx + g_box.wid; // Ensure its positive.
-    //console.log( "bot x = " + g_bot.x );
-    g_bot.x %= g_box.wid; // Wrap to fit box.
-    g_bot.y = gridy + g_box.hgt;
-    //console.log( "bot y = " + g_bot.y );
-    g_bot.y %= g_box.hgt;
-    //console.log( "bot x,y = " + g_bot.x + "," + g_bot.y );
-    draw_bot( );
 }
