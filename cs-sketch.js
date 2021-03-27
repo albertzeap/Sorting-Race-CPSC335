@@ -8,6 +8,7 @@ var g_frame_cnt = 0; // Setup a P5 display-frame counter, to do anim
 var g_frame_mod = 24; // Update ever 'mod' frames.
 var g_stop = 0; // Go by default.
 
+var inputString = ['0','7','C','9','A','2','D','1','8','3','E','4','B','6','5'];
 
 function setup() // P5 Setup Fcn
 {
@@ -26,14 +27,14 @@ function draw()  // P5 Frame Re-draw Fcn, Called for Every Frame.
 {
 
     //Draw the following titles into the cells
-    drawWords('MERGESORT', 50);
-    drawWords('QUICKSORT', 280);
-    drawWords('SELECTION SORT', 475);
-    drawWords('GOLDS PORE SORT', 690);
-  
+    drawTitles('MERGESORT', 50);
+    drawTitles('QUICKSORT', 280);
+    drawTitles('SELECTION SORT', 475);
+    drawTitles('GOLDS PORE SORT', 690);
+
 }
 
-function drawWords(title, x) {
+function drawTitles(title, x) {
     // The text() function needs three parameters:
     // the text to draw, the horizontal position,
     // and the vertical position
@@ -41,8 +42,42 @@ function drawWords(title, x) {
     fill(255);
     stroke('black');
     text(title, x, 50);
+
+}
+
+function drawMerge(){
+
+    /* Will most likely use generators to yield the output
+       This is mainly here to test that the correct output is given 
+    */
+    textSize(10);
+    let sortedString = mergeSort(inputString);
+    let j = 40;
+    for (var i = 0; i < sortedString.length; ++i){
+        text (inputString[i], j, 100)
+        text (sortedString[i], j, 120)
+        j += 10;
+    }
+}
+function drawQuick(){
+
+    /* Will most likely use generators to yield the output
+       This is mainly here to test that the correct output is given 
+    */
+    textSize(10);
+    let sortedString = quicksort(inputString);
+    let j = 260;
+    console.log(sortedString.length);
+    for (var i = 0; i < sortedString.length; ++i){
+        text (inputString[i], j, 100);
+        text (sortedString[i], j, 120);
+        j += 10;
+        
+    }
+}
+
+   
   
-  }
 
 //==================================================================
 //==========================MERGESORT===============================
@@ -82,8 +117,69 @@ function drawWords(title, x) {
   }
 
 //==================================================================
+//==========================QUICKSORT===============================
 //==================================================================
+
+/*  The following mergesort code implementation can be found here 
+    https://www.guru99.com/quicksort-in-javascript.html
+    https://stackabuse.com/quicksort-in-javascript/
+    https://www.w3resource.com/javascript-exercises/searching-and-sorting-algorithm/searching-and-sorting-algorithm-exercise-1.php
+*/
+
+    function quicksort(array){
+      if (array.length <= 1){
+          return array;
+      }
+      else {
+          var left = [];
+          var right = [];
+          var newArray = [];
+          var pivot = array.pop();
+          var length = array.length;
+
+          for (var i = 0; i < length; i++){
+              if (array[i] <= pivot){
+                  left.push(array[i]);
+              }
+              else {
+                  right.push(array[i])
+              }
+          }
+          return newArray.concat(quicksort(left), pivot, quicksort(right));
+      }
+  }
+      
+
+      
+  
+
+
+
+
+
+
 //==================================================================
+//========================SELECTIONSORT=============================
+//==================================================================
+
+/*  The following mergesort code implementation can be found here 
+    
+*/
+
+
+
+
+//==================================================================
+//========================GOLDPORESORT==============================
+//==================================================================
+
+/*  The following mergesort code implementation can be found here 
+    
+*/
+
+
+
+
 
 function keyPressed( )
 {
@@ -98,4 +194,6 @@ function mousePressed( )
     let sz = g_canvas.cell_size;
     let gridx = round( (x-0.5) / sz );
     let gridy = round( (y-0.5) / sz );
+    drawMerge();
+    drawQuick();
 }
