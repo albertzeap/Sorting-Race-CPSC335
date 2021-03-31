@@ -8,7 +8,7 @@ var g_frame_cnt = 0; // Setup a P5 display-frame counter, to do anim
 var g_frame_mod = 24; // Update ever 'mod' frames.
 var g_stop = 0; // Go by default.
 
-var inputString = ['0','7','C','9','A','2','D','1','8','3','E','4','B','6','5'];
+const inputString = ['0','7','C','9','A','2','D','1','8','3','E','4','B','6','5'];
 
 function setup() // P5 Setup Fcn
 {
@@ -65,17 +65,47 @@ function drawQuick(){
        This is mainly here to test that the correct output is given 
     */
     textSize(10);
-    let sortedString = quicksort(inputString);
     let j = 260;
-    console.log(sortedString.length);
-    for (var i = 0; i < sortedString.length; ++i){
+    for (var i = 0; i < inputString.length; ++i){
         text (inputString[i], j, 100);
+        j += 10;
+        
+    }
+    let sortedString = quicksort(inputString);
+    j = 260;
+    console.log(sortedString.length);
+    for (var i = 0; i < inputString.length; ++i){
         text (sortedString[i], j, 120);
         j += 10;
         
     }
 }
 
+function drawSelect(){
+
+    /* Will most likely use generators to yield the output
+       This is mainly here to test that the correct output is given 
+    */
+
+    let currentStep = 1; 
+    let i = 0;
+    let j = 490;
+    let k = 100;
+    textSize(10);
+    for (let val of generateSelect(inputString)){
+        console.log(`SELECTION SORT Step #${currentStep}: [${val}]`);
+        if (i = 14){
+            i = 0;
+            j = 490;
+            k += 20;
+        }
+        text (val, j, k);      
+        j +=10;
+        currentStep++;
+        i++;
+    }
+      
+}
    
   
 
@@ -120,9 +150,7 @@ function drawQuick(){
 //==========================QUICKSORT===============================
 //==================================================================
 
-/*  The following mergesort code implementation can be found here 
-    https://www.guru99.com/quicksort-in-javascript.html
-    https://stackabuse.com/quicksort-in-javascript/
+/*  The following quick sort code implementation can be found here 
     https://www.w3resource.com/javascript-exercises/searching-and-sorting-algorithm/searching-and-sorting-algorithm-exercise-1.php
 */
 
@@ -151,21 +179,35 @@ function drawQuick(){
       
 
       
-  
-
-
-
-
 
 
 //==================================================================
 //========================SELECTIONSORT=============================
 //==================================================================
 
-/*  The following mergesort code implementation can be found here 
-    
+/*  The following selection sort code implementation can be found here 
+    https://reactgo.com/selection-sort-algorithm-javascript/
 */
 
+  
+  function* generateSelect(array) {
+    for (var i = 0; i < array.length; ++i){
+        let min = i;
+
+        for (var j = i + 1; j < array.length; ++j){
+            if (array[min] > array[j]){
+                min = j;
+            }
+            yield array;
+        }
+
+        if ( i !== min){
+            [array[i], array[min]] = [array[min], array[i]];
+        }
+ 
+    }
+    
+}
 
 
 
@@ -194,6 +236,8 @@ function mousePressed( )
     let sz = g_canvas.cell_size;
     let gridx = round( (x-0.5) / sz );
     let gridy = round( (y-0.5) / sz );
-    drawMerge();
-    drawQuick();
+    // drawMerge();
+    // drawQuick();
+    drawSelect();
+
 }
