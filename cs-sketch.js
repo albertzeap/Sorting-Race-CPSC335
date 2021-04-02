@@ -58,6 +58,29 @@ function drawMerge(){
         text (sortedString[i], j, 120)
         j += 10;
     }
+
+
+
+    // let currentStep = 1; 
+    // let i = 0;
+    // let j = 40;
+    // let k = 100;
+    // textSize(10);
+    // for (let val of mergeSort(inputString)){
+    //     console.log(`MERGE SORT Step #${currentStep}: [${val}]`);
+    //     if (i = 14){
+    //         i = 0;
+    //         j = 40;
+    //         k += 20;
+    //     }
+    //     text (val, j, k);      
+    //     j +=10;
+    //     currentStep++;
+    //     i++;
+    // }
+
+
+
 }
 function drawQuick(){
 
@@ -71,7 +94,7 @@ function drawQuick(){
         j += 10;
         
     }
-    let sortedString = quicksort(inputString);
+    let sortedString = generateQuick(inputString);
     j = 260;
     console.log(sortedString.length);
     for (var i = 0; i < inputString.length; ++i){
@@ -79,31 +102,39 @@ function drawQuick(){
         j += 10;
         
     }
+
 }
 
-function drawSelect(){
+async function drawSelect(){
 
     /* Will most likely use generators to yield the output
        This is mainly here to test that the correct output is given 
     */
 
-    let currentStep = 1; 
-    let i = 0;
-    let j = 490;
-    let k = 100;
-    textSize(10);
-    for (let val of generateSelect(inputString)){
-        console.log(`SELECTION SORT Step #${currentStep}: [${val}]`);
-        if (i = 14){
-            i = 0;
-            j = 490;
-            k += 20;
+    (async () => {
+
+        let currentStep = 1; 
+        let i = 0;
+        let j = 490;
+        let k = 100;
+
+        for (let val of generateSelect(inputString)){
+            textSize(10);
+            console.log(`SELECTION SORT Step #${currentStep}: [${val}]`);
+            if (i = 14){
+                i = 0;
+                j = 490;
+                k += 20;
+            }
+            text (val, j, k);      
+            j +=10;
+            currentStep++;
+            i++;
+            await new Promise(resolve => setTimeout(resolve, 100));
+            
         }
-        text (val, j, k);      
-        j +=10;
-        currentStep++;
-        i++;
-    }
+    })();
+
       
 }
    
@@ -126,6 +157,7 @@ function drawSelect(){
       const left = array.slice(0,middle);
       const right = array.slice(middle);
       return merge(mergeSort(left), mergeSort(right))
+ 
   }
 
   function merge (left, right){
@@ -142,8 +174,12 @@ function drawSelect(){
              result.push(right[rightIndex])
              rightIndex++;
          }
+    
      }
      return result.concat(left.slice(leftIndex)).concat(right.slice(rightIndex));
+   
+      
+    
   }
 
 //==================================================================
@@ -154,7 +190,8 @@ function drawSelect(){
     https://www.w3resource.com/javascript-exercises/searching-and-sorting-algorithm/searching-and-sorting-algorithm-exercise-1.php
 */
 
-    function quicksort(array){
+    function generateQuick(array){
+
       if (array.length <= 1){
           return array;
       }
@@ -172,15 +209,12 @@ function drawSelect(){
               else {
                   right.push(array[i])
               }
+          
           }
-          return newArray.concat(quicksort(left), pivot, quicksort(right));
+          return newArray.concat(generateQuick(left), pivot, generateQuick(right));
       }
   }
       
-
-      
-
-
 //==================================================================
 //========================SELECTIONSORT=============================
 //==================================================================
@@ -193,23 +227,19 @@ function drawSelect(){
   function* generateSelect(array) {
     for (var i = 0; i < array.length; ++i){
         let min = i;
-
         for (var j = i + 1; j < array.length; ++j){
             if (array[min] > array[j]){
                 min = j;
             }
             yield array;
         }
-
         if ( i !== min){
             [array[i], array[min]] = [array[min], array[i]];
         }
- 
-    }
-    
+        yield array;
+    }   
+    return array;
 }
-
-
 
 //==================================================================
 //========================GOLDPORESORT==============================
