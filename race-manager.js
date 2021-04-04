@@ -39,8 +39,15 @@ class RaceManager {
     start(){
         let originalString = this.inputString;
         let i = 1;
+        let rowMgr = new RowManager();
         while(originalString != this.inputString || i === 1) {
             console.log(`Pass #${i}: ${this.inputString}`);
+            // Return value of true from updateRow indicates all algorithms have finished sorting.
+            let done = false;
+            while(!done) {
+                done = rowMgr.update_row(this.inputString)
+            }
+            // Rotate string one character to the left.
             this.inputString = this.inputString.slice(1) + this.inputString[0];
             i++;
         }
