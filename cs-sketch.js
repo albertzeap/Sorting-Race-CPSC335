@@ -2,26 +2,14 @@
 // Description: P5 key animation fcns.
 // Add. Info: p5js.org/reference
 
+import RaceManager from './race-manager';
+
 // Make global g_canvas JS 'object': a key-value 'dictionary'.
 var g_canvas = { cell_size: 10, wid:90, hgt:80 }; // JS Global var, w canvas size info.
 var g_frame_cnt = 0; // Setup a P5 display-frame counter, to do anim
 var g_frame_mod = 24; // Update ever 'mod' frames.
 var g_stop = 0; // Go by default.
-
-/*
-    Mode is intended to be set here by the programmer.
-    It defines how the program chooses its inital input.
-    Mode=0: Randomly choose hex string.
-    Mode=1: Always choose hexStrings[0].
-    Mode=2: User inputs hex string.
-*/
-const mode = 0;
-const hexStrings = ['05CA62A7BC2B6F03', '286E1AD0342D7859',
-                    '065DE66B71F040BA', '30E530BC4786AF21',
-                    '0684FB89C3D5754E', '328DE47C65C10BA9',
-                    '07C9A2D18D3E4B65', '34F2756FD18E90BA',
-                    '09F48E7862ED2616', '90BA34F07E56F180',
-                    '1FAB3D47905FC286', 'D7859286E2FD0342'];
+var raceMgr = new RaceManager();
 
 function setup() // P5 Setup Fcn
 {
@@ -30,7 +18,7 @@ function setup() // P5 Setup Fcn
     let height = sz * g_canvas.hgt;
     createCanvas( width, height );  // Make a P5 canvas.
     draw_grid(225,0, 'gray', 'white');
-    if(mode === 2) {
+    if(raceMgr.getMode() === 2) {
         document.getElementById("hexString").setAttribute('style', '');
     }
 }
@@ -271,27 +259,6 @@ function keyPressed( )
     g_stop = ! g_stop;
 }
 
-function beginRace( )
-{
-    let x = mouseX;
-    let y = mouseY;
-    //console.log( "mouse x,y = " + x + "," + y );
-    let sz = g_canvas.cell_size;
-    let gridx = round( (x-0.5) / sz );
-    let gridy = round( (y-0.5) / sz );
-    let inputString = '07C9A2D18D3E4B65'; // Default value if all else fails
-
-    if(mode === 0) {
-        let i = Math.floor(Math.random() * hexStrings.length - 1);
-        inputString = hexStrings[i];
-    }
-    else if(mode === 1) {
-        inputString = hexStrings[0];
-    }
-    else if(mode === 2) {
-        inputString = document.getElementById('hexString');
-    }
-    // drawMerge();
-    // drawQuick();
-    drawSelect(inputString);
+function main() {
+    
 }
