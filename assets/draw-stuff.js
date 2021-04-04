@@ -15,8 +15,8 @@ function draw_grid( rminor, rmajor, rstroke, rfill  )
     for ( var ix = 0; ix < width; ix += rminor )
     {
         let big_linep = (ix % rmajor == 0);
-        let line_wgt = 1;
-        if (big_linep) line_wgt = 2;
+        let line_wgt = 5;
+        if (big_linep) line_wgt = 5;
         strokeWeight( line_wgt );
         line( ix, 0, ix, height );
         strokeWeight( 1 );
