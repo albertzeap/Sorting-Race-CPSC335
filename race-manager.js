@@ -1,6 +1,6 @@
 // Authors: Ryan Patrick
 // Description: Class to handle race-level data and functions.
-export default class RaceManager {
+class RaceManager {
     /*
         Mode is intended to be set here by the programmer.
         It defines how the program chooses its initial input.
@@ -16,15 +16,15 @@ export default class RaceManager {
                      '09F48E7862ED2616', '90BA34F07E56F180',
                      '1FAB3D47905FC286', 'D7859286E2FD0342'];
 
-    contructor() {
-        if(mode === 0) {
-            let i = Math.floor(Math.random() * hexStrings.length - 1);
-            this.inputString = hexStrings[i];
+    constructor() {
+        if(this.mode === 0) {
+            let i = Math.floor(Math.random() * this.hexStrings.length - 1);
+            this.inputString = this.hexStrings[i];
         }
-        else if(mode === 1) {
-            this.inputString = hexStrings[0];
+        else if(this.mode === 1) {
+            this.inputString = this.hexStrings[0];
         }
-        else if(mode === 2) {
+        else if(this.mode === 2) {
             this.inputString = document.getElementById('hexString');
         }
         else {
@@ -32,15 +32,17 @@ export default class RaceManager {
         }
     }
 
-    contructor(inputString) {
-        this.inputString = inputString;
-    }
-
-    getMode() {
+    get_mode() {
         return this.mode;
     }
 
     start(){
-
+        let originalString = this.inputString;
+        let i = 1;
+        while(originalString != this.inputString || i === 1) {
+            console.log(`Pass #${i}: ${this.inputString}`);
+            this.inputString = this.inputString.slice(1) + this.inputString[0];
+            i++;
+        }
     }
 }

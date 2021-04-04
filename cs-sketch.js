@@ -1,9 +1,6 @@
 // Authors: Albert Paez, Ryan Patrick, Ryan Carney
 // Description: P5 key animation fcns.
 // Add. Info: p5js.org/reference
-
-import RaceManager from './race-manager';
-
 // Make global g_canvas JS 'object': a key-value 'dictionary'.
 var g_canvas = { cell_size: 10, wid:90, hgt:80 }; // JS Global var, w canvas size info.
 var g_frame_cnt = 0; // Setup a P5 display-frame counter, to do anim
@@ -18,7 +15,7 @@ function setup() // P5 Setup Fcn
     let height = sz * g_canvas.hgt;
     createCanvas( width, height );  // Make a P5 canvas.
     draw_grid(225,0, 'gray', 'white');
-    if(raceMgr.getMode() === 2) {
+    if(raceMgr.get_mode() === 2) {
         document.getElementById("hexString").setAttribute('style', '');
     }
 }
@@ -260,5 +257,5 @@ function keyPressed( )
 }
 
 function main() {
-    
+    raceMgr.start();
 }
