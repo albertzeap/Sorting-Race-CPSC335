@@ -1,38 +1,53 @@
 class MergeSortManager {
-    //==================================================================
-    //==========================MERGESORT===============================
-    //==================================================================
-
-    /*  The following mergesort code implementation can be found here 
-        https://www.tutorialspoint.com/how-to-implement-merge-sort-in-javascript
-    */
-
-    mergeSort(array){
-        if (array.length == 1){
-            return array;
+    *mergesortGenerator(array){
+        //Create two arrays for sorting
+        let sorted = Array.from(array);
+        let n = sorted.length;
+        let buffer = new Array(n);
+        
+        for (let size = 1; size < n; size *= 2) {
+            for (let leftStart = 0; leftStart < n; leftStart += 2*size) {
+               
+                //Get the two sub arrays
+                let left = leftStart,
+                    right = Math.min(left + size, n),
+                    leftLimit = right,
+                    rightLimit = Math.min(right + size, n);
+                
+                //Merge the sub arrays
+                this.merge(left, right, leftLimit, rightLimit, sorted, buffer);  
+            }
+            
+            //Swap the sorted sub array and merge them
+            let temp = sorted;
+            sorted = buffer;
+            buffer = temp;
+            yield sorted;
         }
-
-        const middle = Math.floor(array.length / 2);
-        const left = array.slice(0,middle);
-        const right = array.slice(middle);
-        return merge(mergeSort(left), mergeSort(right));
+        
+        return sorted;
     }
 
-    merge (left, right){
-        let result = [];
-        let leftIndex = 0;
-        let rightIndex = 0;
-
-        while (leftIndex < left.length && rightIndex < right.length){
-            if (left[leftIndex] < right[rightIndex]){
-                result.push(left[leftIndex]);
-                leftIndex++;
-            }
-            else {
-                result.push(right[rightIndex]);
-                rightIndex++;
-            }
+    merge(left, right, leftLimit, rightLimit, sorted, buffer) {
+        let i = left;
+        
+        //Compare the two sub arrays and merge them in the sorted order
+        while (left < leftLimit && right < rightLimit) {
+          if (sorted[left] <= sorted[right]) {
+            buffer[i++] = sorted[left++];
+          } else {
+            buffer[i++] = sorted[right++];
+          }
         }
-        return result.concat(left.slice(leftIndex)).concat(right.slice(rightIndex));  
-    }
+      
+        //If there are elements in the left sub arrray then add it to the result
+        while (left < leftLimit) {
+          buffer[i++] = sorted[left++];
+        }
+      
+        //If there are elements in the right sub array then add it to the result
+        while (right < rightLimit) {
+          buffer[i++] = sorted[right++];
+        }
+      }
 }

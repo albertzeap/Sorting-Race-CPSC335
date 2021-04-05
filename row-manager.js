@@ -5,6 +5,8 @@ class RowManager {
     constructor(hexString) {
         this.row = 0;
         this.arr = hexString.split('');
+        this.mergeMgr = new MergeSortManager();
+        this.mergeGenerator = this.mergeMgr.mergesortGenerator(this.arr);
         this.quickMgr = new QuickSortManager();
         this.quickGenerator = this.quickMgr.quicksortGenerator(this.arr);
         this.selectMgr = new SelectSortManager();
@@ -13,6 +15,7 @@ class RowManager {
 
     set_arr(hexString) {
         this.arr = hexString.split('');
+        this.mergeGenerator = this.mergeMgr.mergesortGenerator(this.arr);
         this.quickGenerator = this.quickMgr.quicksortGenerator(this.arr);
         this.selectGenerator = this.selectMgr.selectsortGenerator(this.arr);
     }
@@ -21,10 +24,13 @@ class RowManager {
         let results = [];
         let done = true;
         // One pass of Mergesort
-        // One pass of Quicksort
-        let val = this.quickGenerator.next().value;
+        let val = this.mergeGenerator.next().value;
         console.log(val);
         results.push(val);
+        // One pass of Quicksort
+        //val = this.quickGenerator.next().value;
+        //console.log(val);
+        //results.push(val);
         // One pass of Selection Sort
         //let val = this.selectGenerator.next().value;
         //console.log(val);
