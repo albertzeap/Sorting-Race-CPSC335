@@ -31,33 +31,27 @@ class RowManager {
     }
 
     update_row() {
-        let results1 = [];
-        let results2 = [];
-        let results3 = [];
-
+        let results = [];
 
         let done = true;
         // One pass of Mergesort
         let val1 = this.mergeGenerator.next().value;
-        console.log(val1);
-        results1.push(val1);
-        // One pass of Quicksort
-        //val = this.quickGenerator.next().value;
-        //console.log(val);
-        //results.push(val);
+        //console.log(val1);
         // One pass of Quicksort
         let val2 = this.quickGenerator.next().value;
+        console.log(val2);
+        // One pass of Selection Sort
         let val3 = this.selectGenerator.next().value;
 
-        //console.log(val);
-        //console.log(val2);
-        //console.log(this.row);
-        results1.push(val1);
-        results2.push(val2);
-        results3.push(val3);
+        results.push(val1);
+        results.push(val2);
+        results.push(val3);
 
 
-
+        textSize(10); //mergeSort
+        text (val1, c, d);
+        d += 20;
+        
         textSize(10);//Quicksort
         text (val2, a, b);
         b += 20;
@@ -65,34 +59,15 @@ class RowManager {
         textSize(10);//SELECTIONSORT
         text (val3, x, y);
         y += 20;
-
-        textSize(10); //mergeSort
-        text (val1, c, d);
-        d += 20;
-
-      /*  textSize(10);
-        text (val, x, y);
-        y += 20;
-*/
-        // One pass of Selection Sort
-        //let val = this.selectGenerator.next().value;
-        //console.log(val);
-        //results.push(val);
         // One pass of Gold's Pore Sort
 
         // Val will be undefined only once the sort has finished.
         // Therefore, all vals must be undefined for us to be done.
-        results1.forEach(val1 => {
+        results.forEach(val => {
             if(typeof val != 'undefined') {
                 done = false;
             }
         });
-
-      /*  results.forEach(val2 => {
-            if(typeof val2 != 'undefined') {
-                done = false;
-            }
-        });*/
 
         this.row++;
         return done;
