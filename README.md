@@ -69,6 +69,7 @@ Installation & Running
 Known Bugs
 
   - Console will show a split error, but if you refresh the page the error goes away
+  - Gold Pore's Sort algorithm is implemented but does not output
 
 Credits
 

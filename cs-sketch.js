@@ -43,67 +43,6 @@ function drawTitles(title, x) {
 
 }
 
-function drawMerge(inputString){
-
-    /* Will most likely use generators to yield the output
-       This is mainly here to test that the correct output is given 
-    */
-    // textSize(10);
-    // let sortedString = mergeSort(inputString);
-    // let j = 40;
-    // for (var i = 0; i < sortedString.length; ++i){
-    //     text (inputString[i], j, 100)
-    //     text (sortedString[i], j, 120)
-    //     j += 10;
-    // }
-
-
-
-    // let currentStep = 1; 
-    // let i = 0;
-    // let j = 40;
-    // let k = 100;
-    // textSize(10);
-    // for (let val of mergeSort(inputString)){
-    //     console.log(`MERGE SORT Step #${currentStep}: [${val}]`);
-    //     if (i = 14){
-    //         i = 0;
-    //         j = 40;
-    //         k += 20;
-    //     }
-    //     text (val, j, k);      
-    //     j +=10;
-    //     currentStep++;
-    //     i++;
-    // }
-
-
-
-}
-function drawQuick(inputString){
-
-    /* Will most likely use generators to yield the output
-       This is mainly here to test that the correct output is given 
-    */
-    // textSize(10);
-    // let j = 260;
-    // for (var i = 0; i < inputString.length; ++i){
-    //     text (inputString[i], j, 100);
-    //     j += 10;
-        
-    // }
-    // let sortedString = generateQuick(inputString);
-    // j = 260;
-    // console.log(sortedString.length);
-    // for (var i = 0; i < inputString.length; ++i){
-    //     text (sortedString[i], j, 120);
-    //     j += 10;
-        
-    // }
-
-}
-
-
 
 function keyPressed( )
 {
