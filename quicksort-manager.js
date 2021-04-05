@@ -6,6 +6,8 @@ class QuickSortManager {
         // Adding the entire initial array as an "unsorted subarray"
         stack.push(0);
         stack.push(arr.length - 1);
+
+        
         
         // There isn't an explicit peek() function
         // The loop repeats as long as we have unsorted subarrays
@@ -22,6 +24,7 @@ class QuickSortManager {
             if (pivotIndex - 1 > start){
                 stack.push(start);
                 stack.push(pivotIndex - 1);
+                yield arr;
             }
             
             // If there are unsorted elements to the "right" of the pivot,
@@ -29,8 +32,9 @@ class QuickSortManager {
             if (pivotIndex + 1 < end){
                 stack.push(pivotIndex + 1);
                 stack.push(end);
+                yield arr;
             }
-            yield arr;
+            // yield arr;
         }
     }
 

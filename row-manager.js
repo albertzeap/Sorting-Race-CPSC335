@@ -10,6 +10,9 @@ var y = 100;
 var c = 50;
 var d = 100;
 
+var e = 520;
+var f = 100;
+
 class RowManager {
 
     constructor(hexString) {
@@ -21,6 +24,8 @@ class RowManager {
         this.quickGenerator = this.quickMgr.quicksortGenerator(this.arr);
         this.selectMgr = new SelectSortManager();
         this.selectGenerator = this.selectMgr.selectsortGenerator(this.arr);
+        // this.goldMgr = new GoldSortManager();
+        // this.goldGenerator = this.goldMgr.goldsortGenerator(this.arr);
     }
 
     set_arr(hexString) {
@@ -28,6 +33,7 @@ class RowManager {
         this.mergeGenerator = this.mergeMgr.mergesortGenerator(this.arr);
         this.quickGenerator = this.quickMgr.quicksortGenerator(this.arr);
         this.selectGenerator = this.selectMgr.selectsortGenerator(this.arr);
+        // this.goldGenerator = this.goldMgr.goldsortGenerator(this.arr);
     }
 
     update_row() {
@@ -42,26 +48,32 @@ class RowManager {
         // console.log(val2);
         // One pass of Selection Sort
         let val3 = this.selectGenerator.next().value;
+        // One pass of Gold's Pore Sort
+        // let val4 = this.goldGenerator.next().value;
 
         results.push(val1);
         results.push(val2);
         results.push(val3);
+        // results.push(val4);
 
         // console.log(val1);
-        console.log(val2);
+        // console.log(val2);
         // console.log(val3);
-        // textSize(10); //mergeSort
-        // text (val1, c, d);
-        // d += 20;
+        textSize(10); //mergeSort
+        text (val1, c, d);
+        d += 20;
         
-        // textSize(10);//Quicksort
-        // text (val2, a, b);
-        // b += 20;
+        textSize(10);//Quicksort
+        text (val2, a, b);
+        b += 20;
 
-        // textSize(10);//SELECTIONSORT
-        // text (val3, x, y);
+        textSize(10);//SELECTIONSORT
+        text (val3, x, y);
+        y += 20;
+      
+        // textSize(10);//Gold's Pore
+        // text (val4, e, f);
         // y += 20;
-        // One pass of Gold's Pore Sort
 
         // Val will be undefined only once the sort has finished.
         // Therefore, all vals must be undefined for us to be done.

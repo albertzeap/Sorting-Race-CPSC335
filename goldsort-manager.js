@@ -1,4 +1,5 @@
 class GoldSortManager {
+    
     *goldsortGenerator(array) {
         let len = array.length;
         let swapped;
