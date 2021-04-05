@@ -102,42 +102,6 @@ function drawQuick(inputString){
     }
 
 }
-
-async function drawSelect(inputString){
-
-    /* Will most likely use generators to yield the output
-       This is mainly here to test that the correct output is given 
-    */
-
-    (async () => {
-
-        let currentStep = 1; 
-        let i = 0;
-        let j = 490;
-        let k = 100;
-
-        for (let val of generateSelect(inputString)){
-            textSize(10);
-            console.log(`SELECTION SORT Step #${currentStep}: [${val}]`);
-            if (i = 14){
-                i = 0;
-                j = 490;
-                k += 20;
-            }
-            text (val, j, k);      
-            j +=10;
-            currentStep++;
-            i++;
-            await new Promise(resolve => setTimeout(resolve, 100));
-            
-        }
-    })();
-
-      
-}
-   
-  
-
 //==================================================================
 //==========================MERGESORT===============================
 //==================================================================
@@ -212,33 +176,6 @@ async function drawSelect(inputString){
           return newArray.concat(generateQuick(left), pivot, generateQuick(right));
       }
   }
-      
-//==================================================================
-//========================SELECTIONSORT=============================
-//==================================================================
-
-/*  The following selection sort code implementation can be found here 
-    https://reactgo.com/selection-sort-algorithm-javascript/
-*/
-
-  
-  function* generateSelect(array) {
-    for (var i = 0; i < array.length; ++i){
-        let min = i;
-        for (var j = i + 1; j < array.length; ++j){
-            if (array[min] > array[j]){
-                min = j;
-            }
-            yield array;
-        }
-        if ( i !== min){
-            [array[i], array[min]] = [array[min], array[i]];
-        }
-        yield array;
-    }   
-    return array;
-}
-
 //==================================================================
 //========================GOLDPORESORT==============================
 //==================================================================
