@@ -8,7 +8,7 @@ class SelectSortManager {
 /*  The following selection sort code implementation can be found here 
     https://reactgo.com/selection-sort-algorithm-javascript/
 */
-    *generateSelect(array) {
+    *selectsortGenerator(array) {
         for (var i = 0; i < array.length; ++i){
             let min = i;
             for (var j = i + 1; j < array.length; ++j){

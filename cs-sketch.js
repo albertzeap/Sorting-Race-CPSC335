@@ -102,38 +102,7 @@ function drawQuick(inputString){
     }
 
 }
-//==================================================================
-//==========================QUICKSORT===============================
-//==================================================================
 
-/*  The following quick sort code implementation can be found here 
-    https://www.w3resource.com/javascript-exercises/searching-and-sorting-algorithm/searching-and-sorting-algorithm-exercise-1.php
-*/
-
-    function generateQuick(array){
-
-      if (array.length <= 1){
-          return array;
-      }
-      else {
-          var left = [];
-          var right = [];
-          var newArray = [];
-          var pivot = array.pop();
-          var length = array.length;
-
-          for (var i = 0; i < length; i++){
-              if (array[i] <= pivot){
-                  left.push(array[i]);
-              }
-              else {
-                  right.push(array[i])
-              }
-          
-          }
-          return newArray.concat(generateQuick(left), pivot, generateQuick(right));
-      }
-  }
 //==================================================================
 //========================GOLDPORESORT==============================
 //==================================================================
