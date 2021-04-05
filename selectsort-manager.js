@@ -15,7 +15,6 @@ class SelectSortManager {
                 if (array[min] > array[j]){
                     min = j;
                 }
-                yield array;
             }
             if ( i !== min){
                 [array[i], array[min]] = [array[min], array[i]];
