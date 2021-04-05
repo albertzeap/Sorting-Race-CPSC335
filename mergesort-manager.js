@@ -25,7 +25,7 @@ class MergeSortManager {
             yield sorted;
         }
         
-        return sorted;
+       
     }
 
     merge(left, right, leftLimit, rightLimit, sorted, buffer) {

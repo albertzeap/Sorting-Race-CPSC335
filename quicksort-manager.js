@@ -7,9 +7,10 @@ class QuickSortManager {
             if (array[i] < pivot) less.push(array[i]);
             else greater.push(array[i]);
             array.splice(min, i - min + 1, ...less.concat(pivot, greater));
+            
         }
         yield array;
-
+        
         yield* this.quicksortGenerator(array, min, min + less.length);
         yield* this.quicksortGenerator(array, min + less.length + 1, max);
     }

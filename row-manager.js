@@ -39,7 +39,7 @@ class RowManager {
         //console.log(val1);
         // One pass of Quicksort
         let val2 = this.quickGenerator.next().value;
-        console.log(val2);
+        // console.log(val2);
         // One pass of Selection Sort
         let val3 = this.selectGenerator.next().value;
 
@@ -47,18 +47,20 @@ class RowManager {
         results.push(val2);
         results.push(val3);
 
-
-        textSize(10); //mergeSort
-        text (val1, c, d);
-        d += 20;
+        // console.log(val1);
+        console.log(val2);
+        // console.log(val3);
+        // textSize(10); //mergeSort
+        // text (val1, c, d);
+        // d += 20;
         
-        textSize(10);//Quicksort
-        text (val2, a, b);
-        b += 20;
+        // textSize(10);//Quicksort
+        // text (val2, a, b);
+        // b += 20;
 
-        textSize(10);//SELECTIONSORT
-        text (val3, x, y);
-        y += 20;
+        // textSize(10);//SELECTIONSORT
+        // text (val3, x, y);
+        // y += 20;
         // One pass of Gold's Pore Sort
 
         // Val will be undefined only once the sort has finished.

@@ -18,8 +18,9 @@ class SelectSortManager {
             }
             if ( i !== min){
                 [array[i], array[min]] = [array[min], array[i]];
+                yield array;
             }
-            yield array;
+            
         }   
         return array;
     }
